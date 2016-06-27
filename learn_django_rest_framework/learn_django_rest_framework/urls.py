@@ -17,7 +17,9 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 from rest_framework import routers
+# from rest_framework.urlpatterns import format_suffix_patterns
 from quickstart import views
+
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
@@ -29,3 +31,5 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^query/', views.query)
 ]
+
+# urlpatterns = format_suffix_patterns(urlpatterns)

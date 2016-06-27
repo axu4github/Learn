@@ -26,6 +26,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     http://127.0.0.1:8000/query/?sql=%27select%20*%20from%20a%27
 '''
 @api_view(['GET'])
+# def query(request, format=None):
 def query(request):
     requestData = {'sql': 'select * from a'}
     serializer = QuerySerializer(data=requestData)
