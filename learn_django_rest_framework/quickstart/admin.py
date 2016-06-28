@@ -6,6 +6,6 @@ from models import Query
 class QueryAdmin(admin.ModelAdmin):
     """docstring for QueryAdmin"""
     # fields = ['context', 'language']
-    list_display = ('context', 'language', 'created')
+    list_display = ('id', 'context', 'language', 'created', 'formated', 'description', 'owner')
         
 admin.site.register(Query, QueryAdmin)

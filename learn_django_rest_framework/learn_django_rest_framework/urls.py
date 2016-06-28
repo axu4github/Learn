@@ -24,14 +24,14 @@ from quickstart import views
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
-# router.register(r'queryviewset', views.QueryViewSet)
+router.register(r'queryviewset', views.QueryViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/', include(router.urls)),
     url(r'^query/', views.query, name='query'),
-    url(r'^query4apiview/', views.Query.as_view(), name='query4apiview'),
+    url(r'^query4view/', views.QueryView.as_view(), name='query4view'),
     url(r'^query4mixinview/', views.QueryMixinView.as_view(), name='query4mixinview'),
     url(r'^api-root/', views.api_root, name='api_root'),
 ]
