@@ -19,6 +19,7 @@ from django.contrib import admin
 from rest_framework import routers
 # from rest_framework.urlpatterns import format_suffix_patterns
 from quickstart import views
+from material.frontend import urls as frontend_urls
 
 
 router = routers.DefaultRouter()
@@ -27,7 +28,8 @@ router.register(r'groups', views.GroupViewSet)
 router.register(r'queryviewset', views.QueryViewSet)
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    # url(r'^admin/', admin.site.urls),
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # url(r'^docs/', include('rest_framework_docs.urls')),
     url(r'^api/', include(router.urls)),
@@ -35,6 +37,7 @@ urlpatterns = [
     url(r'^query4view/', views.QueryView.as_view(), name='query4view'),
     url(r'^query4mixinview/', views.QueryMixinView.as_view(), name='query4mixinview'),
     url(r'^api-root/', views.api_root, name='api_root'),
+    # url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
 ]
 
 # urlpatterns = format_suffix_patterns(urlpatterns)
