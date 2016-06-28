@@ -12,7 +12,4 @@ class QueryAdmin(admin.ModelAdmin):
     list_filter = ['language']
     search_fields = ['context', 'language']
 
-    def created(self):
-        return "123 %s " % self.created
-
 admin.site.register(Query, QueryAdmin)
