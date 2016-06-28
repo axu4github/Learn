@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import status
@@ -8,6 +9,7 @@ from rest_framework.reverse import reverse
 from rest_framework.generics import CreateAPIView
 from quickstart.serializers import UserSerializer, GroupSerializer, QuerySerializer
 from models import Query
+import sqlparse
 
 
 @api_view(['GET'])
@@ -63,7 +65,18 @@ class QueryViewSet(viewsets.ModelViewSet):
 
     queryset = Query.objects.all()
     serializer_class = QuerySerializer
-    
+
+    def create(self, request, *args, **kwargs):
+        '''
+        重写 rest_framework.mixins.CreateModelMixin 中 create() 方法
+        '''
+        if request.data['context']:
+            request.data['owner'] = str(self.request.user)
+            request.data['language'] = 'sql'
+            request.data['formated'] = sqlparse.format(
+                request.data['context'], reindent=False, keyword_case='upper')
+
+        return super(QueryViewSet, self).create(request, *args, **kwargs)
 
 
 class UserViewSet(viewsets.ModelViewSet):

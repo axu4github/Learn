@@ -29,6 +29,7 @@ router.register(r'queryviewset', views.QueryViewSet)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    # url(r'^docs/', include('rest_framework_docs.urls')),
     url(r'^api/', include(router.urls)),
     url(r'^query/', views.query, name='query'),
     url(r'^query4view/', views.QueryView.as_view(), name='query4view'),
