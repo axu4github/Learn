@@ -3,8 +3,77 @@ from rest_framework import viewsets
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.reverse import reverse
+from rest_framework.generics import CreateAPIView
 from quickstart.serializers import UserSerializer, GroupSerializer, QuerySerializer
 from django.http import JsonResponse
+
+
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'query': reverse('query', request=request, format=format),
+        'query4apiview': reverse('query4apiview', request=request, format=format),
+        'query4mixinview': reverse('query4mixinview', request=request, format=format),
+    })
+
+
+@api_view(['GET'])
+def query(request, format=None):
+    '''
+        url => http://127.0.0.1:8000/query/?sql=%27select%20*%20from%20a%27
+    '''
+    requestData = {'sql': 'select * from a'}
+    serializer = QuerySerializer(data=requestData)
+    if serializer.is_valid():
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class Query(APIView):
+
+    def post(self, request, format=None):
+        requestData = {'sql': request.data}
+        print request.data
+        serializer = QuerySerializer(data=requestData)
+        if serializer.is_valid():
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class QueryMixinView(CreateAPIView):
+    """docstring for QueryMixinView"""
+
+    serializer_class = QuerySerializer
+
+    def post(self, request):
+        print request.data
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# class QueryViewSet(viewsets.ModelViewSet):
+#     """docstring for QueryViewSet"""
+
+#     queryset = {}
+#     serializer_class = QuerySerializer
+
+#     def create(self, request):
+#         pass
+
+#     def post(self, request):
+#         print request.data
+#         serializer = self.get_serializer(data=request.data)
+#         if serializer.is_valid():
+#             return Response(serializer.data, status=status.HTTP_200_OK)
+
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -21,16 +90,3 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
-
-'''
-    http://127.0.0.1:8000/query/?sql=%27select%20*%20from%20a%27
-'''
-@api_view(['GET'])
-# def query(request, format=None):
-def query(request):
-    requestData = {'sql': 'select * from a'}
-    serializer = QuerySerializer(data=requestData)
-    if serializer.is_valid():
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
