@@ -1,3 +1,4 @@
 # Python:
 *.py[cod]
-*.logdb.sqlite3
+*.log
+db.sqlite3
