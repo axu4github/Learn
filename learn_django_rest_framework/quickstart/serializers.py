@@ -37,7 +37,7 @@ class QuerySerializer(serializers.HyperlinkedModelSerializer):
         context = value.lower().split(' ')
         if 'select' not in context or 'from' not in context:
             raise serializers.ValidationError(
-                "Query context ({0}) is not SQL Syntax".format(value))
+                "SQL Syntax Error: Query context ({0})".format(value))
 
         return value
 

@@ -4,12 +4,11 @@ from models import Query
 # Register your models here.
 
 
+@admin.register(Query)
 class QueryAdmin(admin.ModelAdmin):
     """docstring for QueryAdmin"""
-    fields = ['context', 'language', 'description']
+    fields = ['context']
     list_display = ('id', 'context', 'language', 'created',
                     'formated', 'description', 'owner')
     list_filter = ['language']
     search_fields = ['context', 'language']
-
-admin.site.register(Query, QueryAdmin)

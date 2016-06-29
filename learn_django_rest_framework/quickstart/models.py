@@ -9,7 +9,7 @@ from django.conf import settings
 
 class Query(models.Model):
     """docstring for Query"""
-    context = models.CharField(blank=False, max_length=1000)
+    context = models.TextField(blank=False)
     created = models.DateTimeField(auto_now_add=True)
     language = models.CharField(
         choices=settings.LANGUAGE_CHOICES, default='sql', max_length=100)
