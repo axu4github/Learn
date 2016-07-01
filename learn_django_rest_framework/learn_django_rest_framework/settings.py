@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'material',
     'material.frontend',
-    'material.admin', 
+    'material.admin',
     # 'jet',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -133,7 +133,7 @@ STATIC_URL = '/static/'
 # Quickstart settings
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 3
 }
 
 # REST_FRAMEWORK = {
