@@ -8,4 +8,5 @@
 
 class LearnScrapyPipeline(object):
     def process_item(self, item, spider):
+        print "!!!!!! ========= LearnScrapyPipeline ============ !!!!!!"
         return item
