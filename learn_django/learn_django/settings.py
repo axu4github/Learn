@@ -82,18 +82,18 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'metadata',
-    #     'USER' : 'root',
-    #     'PASSWORD': 'root123',
-    #     'HOST': '10.0.1.14',
-    #     'PORT': '3306',
-    # }
+    'metadata': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'metadata',
+        'USER' : 'root',
+        'PASSWORD': 'root123',
+        'HOST': '10.0.1.14',
+        'PORT': '3306',
+    }
 }
 
 # 数据库路由设置
-# DATABASE_ROUTERS = ['DB_ROUTERS.base_router.BaseRouter']
+DATABASE_ROUTERS = ['db_routers.base_router.BaseRouter']
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

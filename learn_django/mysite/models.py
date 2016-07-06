@@ -1,63 +1,15 @@
+# This is an auto-generated Django model module.
+# You'll have to do the following manually to clean this up:
+#   * Rearrange models' order
+#   * Make sure each model has one field with primary_key=True
+#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+# Feel free to rename the models, but don't rename db_table values or field names.
+#
+# Also note: You'll have to insert the output of 'django-admin sqlcustom [app_label]'
+# into your database.
+from __future__ import unicode_literals
+
 from django.db import models
-
-
-class People(models.Model):
-    name = models.CharField(max_length=20, blank=True, null=True)
-
-
-class People1(models.Model):
-    name = models.CharField(max_length=20, blank=True, null=True)
-
-    class Meta:
-        db_table = 'PeopleOne'
-
-
-class People2(models.Model):
-    # Field name made lowercase.
-    departmentid = models.IntegerField(
-        db_column='departmentId', blank=True, null=True)
-    name = models.CharField(max_length=20, blank=True, null=True)
-    code = models.CharField(max_length=20, blank=True, null=True)
-    active = models.CharField(max_length=1, blank=True, null=True)
-    # Field name made lowercase.
-    createtime = models.CharField(
-        db_column='createTime', max_length=20, blank=True, null=True)
-    # Field name made lowercase.
-    createuser = models.CharField(
-        db_column='createUser', max_length=20, blank=True, null=True)
-    # Field name made lowercase.
-    lastmodifytime = models.CharField(
-        db_column='lastModifyTime', max_length=20, blank=True, null=True)
-    # Field name made lowercase.
-    lastmodifyuser = models.CharField(
-        db_column='lastModifyUser', max_length=20, blank=True, null=True)
-
-    class Meta:
-        db_table = 'PeopleTwo'
-
-
-class Businesstype(models.Model):
-    # Field name made lowercase.
-    departmentid = models.IntegerField(
-        db_column='departmentId', blank=True, null=True)
-    name = models.CharField(max_length=20, blank=True, null=True)
-    code = models.CharField(max_length=20, blank=True, null=True)
-    active = models.CharField(max_length=1, blank=True, null=True)
-    # Field name made lowercase.
-    createtime = models.CharField(
-        db_column='createTime', max_length=20, blank=True, null=True)
-    # Field name made lowercase.
-    createuser = models.CharField(
-        db_column='createUser', max_length=20, blank=True, null=True)
-    # Field name made lowercase.
-    lastmodifytime = models.CharField(
-        db_column='lastModifyTime', max_length=20, blank=True, null=True)
-    # Field name made lowercase.
-    lastmodifyuser = models.CharField(
-        db_column='lastModifyUser', max_length=20, blank=True, null=True)
-
-    class Meta:
-        db_table = 'BusinessType'
 
 
 class Department(models.Model):
@@ -68,6 +20,7 @@ class Department(models.Model):
     active = models.CharField(max_length=1, blank=True, null=True)
 
     class Meta:
+        managed = False
         db_table = 'Department'
 
 
@@ -84,6 +37,7 @@ class Dictionary(models.Model):
     remark = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
+        managed = False
         db_table = 'Dictionary'
 
 
@@ -304,3 +258,8 @@ class Securityuserrole(models.Model):
         managed = False
         db_table = 'SecurityUserRole'
         unique_together = (('userid', 'roleid'),)
+
+
+class Person(models.Model):
+    
+    name = models.CharField(max_length=20, blank=True, null=True)

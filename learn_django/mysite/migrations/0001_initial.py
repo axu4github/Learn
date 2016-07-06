@@ -11,19 +11,49 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='Department',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=100, null=True, blank=True)),
+                ('parentid', models.IntegerField(db_column='parentId')),
+                ('code', models.CharField(max_length=20, null=True, blank=True)),
+                ('active', models.CharField(max_length=1, null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'Department',
+                'managed': False,
+            },
+        ),
+        migrations.CreateModel(
+            name='Dictionary',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('groupname', models.CharField(max_length=40, null=True, db_column='groupName', blank=True)),
+                ('key', models.CharField(max_length=100, null=True, blank=True)),
+                ('desc', models.CharField(max_length=100, null=True, blank=True)),
+                ('active', models.CharField(max_length=1, null=True, blank=True)),
+                ('sortindex', models.IntegerField(null=True, db_column='sortIndex', blank=True)),
+                ('remark', models.CharField(max_length=100, null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'Dictionary',
+                'managed': False,
+            },
+        ),
+        migrations.CreateModel(
             name='Keyword',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('keywordtypeid', models.IntegerField(null=True, db_column=b'keywordTypeId', blank=True)),
+                ('keywordtypeid', models.IntegerField(null=True, db_column='keywordTypeId', blank=True)),
                 ('keyword', models.CharField(max_length=40, null=True, blank=True)),
                 ('synonym', models.CharField(max_length=100, null=True, blank=True)),
                 ('active', models.CharField(max_length=1, null=True, blank=True)),
-                ('createtime', models.CharField(max_length=20, null=True, db_column=b'createTime', blank=True)),
-                ('createuser', models.CharField(max_length=20, null=True, db_column=b'createUser', blank=True)),
-                ('usabletime', models.CharField(max_length=20, null=True, db_column=b'usableTime', blank=True)),
-                ('forbiddentime', models.CharField(max_length=20, null=True, db_column=b'forbiddenTime', blank=True)),
-                ('lastmodifytime', models.CharField(max_length=20, null=True, db_column=b'lastModifyTime', blank=True)),
-                ('lastmodifyuser', models.CharField(max_length=20, null=True, db_column=b'lastModifyUser', blank=True)),
+                ('createtime', models.CharField(max_length=20, null=True, db_column='createTime', blank=True)),
+                ('createuser', models.CharField(max_length=20, null=True, db_column='createUser', blank=True)),
+                ('usabletime', models.CharField(max_length=20, null=True, db_column='usableTime', blank=True)),
+                ('forbiddentime', models.CharField(max_length=20, null=True, db_column='forbiddenTime', blank=True)),
+                ('lastmodifytime', models.CharField(max_length=20, null=True, db_column='lastModifyTime', blank=True)),
+                ('lastmodifyuser', models.CharField(max_length=20, null=True, db_column='lastModifyUser', blank=True)),
                 ('remark', models.CharField(max_length=200, null=True, blank=True)),
             ],
             options={
@@ -130,7 +160,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=100, null=True, blank=True)),
                 ('code', models.CharField(max_length=20, null=True, blank=True)),
-                ('parentid', models.IntegerField(null=True, db_column=b'parentId', blank=True)),
+                ('parentid', models.IntegerField(null=True, db_column='parentId', blank=True)),
                 ('active', models.CharField(max_length=1, null=True, blank=True)),
             ],
             options={
@@ -142,15 +172,15 @@ class Migration(migrations.Migration):
             name='Securitymodule',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('parentid', models.IntegerField(null=True, db_column=b'parentId', blank=True)),
+                ('parentid', models.IntegerField(null=True, db_column='parentId', blank=True)),
                 ('code', models.CharField(max_length=20, null=True, blank=True)),
                 ('name', models.CharField(max_length=20, null=True, blank=True)),
-                ('showname', models.CharField(max_length=20, null=True, db_column=b'showName', blank=True)),
+                ('showname', models.CharField(max_length=20, null=True, db_column='showName', blank=True)),
                 ('url', models.CharField(max_length=100, null=True, blank=True)),
-                ('sortindex', models.IntegerField(null=True, db_column=b'sortIndex', blank=True)),
+                ('sortindex', models.IntegerField(null=True, db_column='sortIndex', blank=True)),
                 ('active', models.CharField(max_length=1, null=True, blank=True)),
-                ('ismenu', models.CharField(max_length=1, null=True, db_column=b'isMenu', blank=True)),
-                ('isopennew', models.CharField(max_length=1, null=True, db_column=b'isOpenNew', blank=True)),
+                ('ismenu', models.CharField(max_length=1, null=True, db_column='isMenu', blank=True)),
+                ('isopennew', models.CharField(max_length=1, null=True, db_column='isOpenNew', blank=True)),
                 ('remark', models.CharField(max_length=100, null=True, blank=True)),
             ],
             options={
@@ -163,7 +193,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=20, null=True, blank=True)),
-                ('showname', models.CharField(max_length=20, null=True, db_column=b'showName', blank=True)),
+                ('showname', models.CharField(max_length=20, null=True, db_column='showName', blank=True)),
                 ('active', models.CharField(max_length=1, null=True, blank=True)),
                 ('remark', models.CharField(max_length=100, null=True, blank=True)),
             ],
@@ -176,8 +206,8 @@ class Migration(migrations.Migration):
             name='Securityrolemodule',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('roleid', models.IntegerField(db_column=b'roleId')),
-                ('moduleid', models.IntegerField(db_column=b'moduleId')),
+                ('roleid', models.IntegerField(db_column='roleId')),
+                ('moduleid', models.IntegerField(db_column='moduleId')),
             ],
             options={
                 'db_table': 'SecurityRoleModule',
@@ -188,18 +218,18 @@ class Migration(migrations.Migration):
             name='Securityuser',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('departmentid', models.IntegerField(null=True, db_column=b'departmentId', blank=True)),
+                ('departmentid', models.IntegerField(null=True, db_column='departmentId', blank=True)),
                 ('code', models.CharField(max_length=20, null=True, blank=True)),
                 ('name', models.CharField(max_length=40, null=True, blank=True)),
-                ('realname', models.CharField(max_length=40, null=True, db_column=b'realName', blank=True)),
+                ('realname', models.CharField(max_length=40, null=True, db_column='realName', blank=True)),
                 ('password', models.CharField(max_length=100, null=True, blank=True)),
                 ('identity', models.CharField(max_length=10, null=True, blank=True)),
                 ('active', models.CharField(max_length=1, null=True, blank=True)),
-                ('loginfailed', models.IntegerField(null=True, db_column=b'loginFailed', blank=True)),
-                ('createtime', models.CharField(max_length=20, null=True, db_column=b'createTime', blank=True)),
-                ('createuser', models.IntegerField(null=True, db_column=b'createUser', blank=True)),
-                ('lastmodifytime', models.CharField(max_length=20, null=True, db_column=b'lastModifyTime', blank=True)),
-                ('lastmodifyuser', models.IntegerField(null=True, db_column=b'lastModifyUser', blank=True)),
+                ('loginfailed', models.IntegerField(null=True, db_column='loginFailed', blank=True)),
+                ('createtime', models.CharField(max_length=20, null=True, db_column='createTime', blank=True)),
+                ('createuser', models.IntegerField(null=True, db_column='createUser', blank=True)),
+                ('lastmodifytime', models.CharField(max_length=20, null=True, db_column='lastModifyTime', blank=True)),
+                ('lastmodifyuser', models.IntegerField(null=True, db_column='lastModifyUser', blank=True)),
             ],
             options={
                 'db_table': 'SecurityUser',
@@ -210,91 +240,12 @@ class Migration(migrations.Migration):
             name='Securityuserrole',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('userid', models.IntegerField(db_column=b'userId')),
-                ('roleid', models.IntegerField(db_column=b'roleId')),
+                ('userid', models.IntegerField(db_column='userId')),
+                ('roleid', models.IntegerField(db_column='roleId')),
             ],
             options={
                 'db_table': 'SecurityUserRole',
                 'managed': False,
-            },
-        ),
-        migrations.CreateModel(
-            name='Businesstype',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('departmentid', models.IntegerField(null=True, db_column=b'departmentId', blank=True)),
-                ('name', models.CharField(max_length=20, null=True, blank=True)),
-                ('code', models.CharField(max_length=20, null=True, blank=True)),
-                ('active', models.CharField(max_length=1, null=True, blank=True)),
-                ('createtime', models.CharField(max_length=20, null=True, db_column=b'createTime', blank=True)),
-                ('createuser', models.CharField(max_length=20, null=True, db_column=b'createUser', blank=True)),
-                ('lastmodifytime', models.CharField(max_length=20, null=True, db_column=b'lastModifyTime', blank=True)),
-                ('lastmodifyuser', models.CharField(max_length=20, null=True, db_column=b'lastModifyUser', blank=True)),
-            ],
-            options={
-                'db_table': 'BusinessType',
-            },
-        ),
-        migrations.CreateModel(
-            name='Department',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=100, null=True, blank=True)),
-                ('parentid', models.IntegerField(db_column=b'parentId')),
-                ('code', models.CharField(max_length=20, null=True, blank=True)),
-                ('active', models.CharField(max_length=1, null=True, blank=True)),
-            ],
-            options={
-                'db_table': 'Department',
-            },
-        ),
-        migrations.CreateModel(
-            name='Dictionary',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('groupname', models.CharField(max_length=40, null=True, db_column=b'groupName', blank=True)),
-                ('key', models.CharField(max_length=100, null=True, blank=True)),
-                ('desc', models.CharField(max_length=100, null=True, blank=True)),
-                ('active', models.CharField(max_length=1, null=True, blank=True)),
-                ('sortindex', models.IntegerField(null=True, db_column=b'sortIndex', blank=True)),
-                ('remark', models.CharField(max_length=100, null=True, blank=True)),
-            ],
-            options={
-                'db_table': 'Dictionary',
-            },
-        ),
-        migrations.CreateModel(
-            name='People',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=20, null=True, blank=True)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='People1',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=20, null=True, blank=True)),
-            ],
-            options={
-                'db_table': 'PeopleOne',
-            },
-        ),
-        migrations.CreateModel(
-            name='People2',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('departmentid', models.IntegerField(null=True, db_column=b'departmentId', blank=True)),
-                ('name', models.CharField(max_length=20, null=True, blank=True)),
-                ('code', models.CharField(max_length=20, null=True, blank=True)),
-                ('active', models.CharField(max_length=1, null=True, blank=True)),
-                ('createtime', models.CharField(max_length=20, null=True, db_column=b'createTime', blank=True)),
-                ('createuser', models.CharField(max_length=20, null=True, db_column=b'createUser', blank=True)),
-                ('lastmodifytime', models.CharField(max_length=20, null=True, db_column=b'lastModifyTime', blank=True)),
-                ('lastmodifyuser', models.CharField(max_length=20, null=True, db_column=b'lastModifyUser', blank=True)),
-            ],
-            options={
-                'db_table': 'PeopleTwo',
             },
         ),
     ]
