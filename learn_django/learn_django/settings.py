@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-  
+
 """
 Django settings for learn_django project.
 
@@ -37,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mysite',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -78,9 +81,19 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'metadata',
+    #     'USER' : 'root',
+    #     'PASSWORD': 'root123',
+    #     'HOST': '10.0.1.14',
+    #     'PORT': '3306',
+    # }
 }
 
+# 数据库路由设置
+# DATABASE_ROUTERS = ['DB_ROUTERS.base_router.BaseRouter']
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
