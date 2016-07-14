@@ -37,4 +37,5 @@ urlpatterns = [
     url(r'^query4view/', views.QueryView.as_view(), name='query4view'),
     url(r'^query4mixinview/', views.QueryMixinView.as_view(), name='query4mixinview'),
     url(r'^query4viewset/', query4viewset, name='query4viewset'),
+    url(r'^studyswagger/', views.StudyWithSwaggerApiView.as_view(), name='studyswagger'),
 ]

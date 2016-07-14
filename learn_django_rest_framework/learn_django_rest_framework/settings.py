@@ -130,9 +130,12 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
+APPEND_SLASH = False
+
 # Quickstart settings
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 3
+    # 'VIEW_DESCRIPTION_FUNCTION': 'rest_framework_swagger.views.get_restructuredtext',
+    'PAGE_SIZE': 3,
 }
 
 # 加载pygments配置 语言列表/显示格式列表
