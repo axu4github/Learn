@@ -54,6 +54,7 @@ ROBOTSTXT_OBEY = True
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware': None,
+    'scrapy.downloadermiddlewares.redirect.RedirectMiddleware': None,
     'downloaderMiddlewares.dynamic.DynamicPageMiddleware': 950,
     'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware' : None,
 }
@@ -69,6 +70,8 @@ DOWNLOADER_MIDDLEWARES = {
 ITEM_PIPELINES = {
    'learn_scrapy.pipelines.LearnScrapyPipeline': 300,
 }
+
+METAREFRESH_MAXDELAY = 200
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html

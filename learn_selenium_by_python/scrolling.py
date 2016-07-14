@@ -23,11 +23,11 @@ try:
     print "---- 等待结束 ----"
 
     # 将页面滚动条拖到底部
-    driver.execute_script("scrollTo(0, 10000)") # 10000没到底部
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     driver.implicitly_wait(10)  # 隐式等待10秒
     print "---- 滚动完成 ----"
 
-    # time.sleep(60)
+    time.sleep(5)
 except Exception, e:
     raise e
 finally:
