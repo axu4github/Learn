@@ -14,6 +14,9 @@ class Test(object):
     def __del__(self):
         print "this is test del func"
         self.arg.update({'b': 'b'})
+        print "--del--"
+        print self.arg
+        print "--del--"
 
     def run(self):
         self.arg.update({'c': 'c'})
