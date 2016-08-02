@@ -15,9 +15,11 @@ class MP(object):
         print 'main func'
         kwargs = {'a':'a', 'b':'b'}
         arg = 'arg'
+        arg2 = 'arg2'
+        arg3 = 'arg3'
         args = ['arg1', 'arg2']
         print 'Parent process %s.' % os.getpid()
-        p = Process(target=self.child, args=(arg, args), kwargs=kwargs)
+        p = Process(target=self.child, args=(arg, arg2, arg3, args), kwargs=kwargs)
         print 'Process will start.'
         p.start()
         print p.pid, p.is_alive(), p.name
@@ -25,8 +27,9 @@ class MP(object):
         print p.is_alive()
         print 'process end.'
 
-    def child(self, arg, *args, **kwargs):
+    def child(self, arg, arg2, arg3, *args, **kwargs):
         print 'Run child process %s (%s)...' % (arg, os.getpid())
+        print arg,arg2,arg3
         print args
         print kwargs
         print self.name

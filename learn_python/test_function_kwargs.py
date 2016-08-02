@@ -14,10 +14,17 @@ def func(*args, **kwargs):
     print kwargs
     print '---'
 
+
 def func_a(username=None, password=None, *args, **kwargs):
     print '---'
     print username, password, args, kwargs
     print '---'
+
+
+def func_d(username=None, **kwargs):
+    print '---func_d---'
+    print username, kwargs
+    print '---func_d---'
 
 if __name__ == '__main__':
     # ({'username': 'xiaoqiang', 'password': 'xiaoqiang123'},)
@@ -35,3 +42,10 @@ if __name__ == '__main__':
     func_a(dic)
     func_a(*dic)
     func_a(**dic)
+
+    ''' output
+    ---func_d---
+    xiaoqiang {'password': '123'}
+    ---func_d---
+    '''
+    func_d(username='xiaoqiang', password='123')
