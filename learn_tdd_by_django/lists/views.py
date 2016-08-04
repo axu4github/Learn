@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-# from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
 # home_page = None
 
-# @csrf_protect
+
+@csrf_exempt
 def home_page(request):
     # return HttpResponse('<html><title>To-Do lists</title></html>')
 
