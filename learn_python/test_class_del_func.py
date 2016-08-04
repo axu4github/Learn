@@ -20,9 +20,11 @@ class Test(object):
             print "--del--"
             print self.arg
             print "--del--"
+            raise Exception("del function exception")
         except Exception, e:
             print "--- is exception ---"
             print e
+            raise e 
 
     def run(self):
         self.arg.update({'c': 'c'})
