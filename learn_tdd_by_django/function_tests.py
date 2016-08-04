@@ -1,13 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-'''
-功能测试
-
-- 功能测试（Function Test）
-- 验收测试（Acceptance Test）
-- 端到端测试（End-to-End Test）
-- 黑箱测试（Black Box Test）
-'''
+''' 功能测试 '''
 
 
 from selenium import webdriver
@@ -18,7 +11,7 @@ class NewVisitorTest(unittest.TestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
-        self.browser.implicitly_wait(3) # 隐式等待
+        self.browser.implicitly_wait(3)  # 隐式等待
 
     def tearDown(self):
         self.browser.quit()
