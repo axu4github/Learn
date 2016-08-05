@@ -84,3 +84,26 @@ def test_home_page_can_save_a_POST_request(self):
 
 ## 记在便签上的待办事项清单
 在便签上记录编写代码过程中遇到的问题,等手头的工作完成后再回过头来解决。
+
+# YAGNI（You aint gonna need it）
+关于设计的思考一旦开始就很难停下来,我们会冒出各种想法:或许想给每个清单起个名字或加个标题,或许想使用用户名和密码识别用户,或许想给清单添加一个较长的备注和简短的描述,或许想存储某种顺序,等等。但是,要遵守敏捷理念的另一个信条:“YAGNI”(读作 yag-knee)。它是“You aint gonna need it”的简称(“你不需要这个”)。作为软件开发者,我们从创造事物中获得乐趣。有时我们冒出一个想法,觉得可能需要,便无法抵御内心的冲动想要开发出来。可问题是,不管想法有多好,大多数情况下最终你都用不到这个功能。应用中会残留很多没用的代码,还增加了应用的复杂度。YAGNI是个真言,可以用来抵御热切的创造欲。
+
+# 元注释
+```
+[...]
+# 页面再次更新,她的清单中显示了这两个待办事项 
+self.check_for_row_in_list_table('2: Use peacock feathers to make a fly') self.check_for_row_in_list_table('1: Buy peacock feathers')
+# 现在一个叫作弗朗西斯的新用户访问了网站
+## 我们使用一个新浏览器会话 # ➊ 
+## 确保伊迪丝的信息不会从cookie中泄露出来 # ➊ 
+self.browser.quit()
+self.browser = webdriver.Firefox()
+# 弗朗西斯访问首页
+# 页面中看不到伊迪丝的清单 
+self.browser.get(self.live_server_url)
+page_text = self.browser.find_element_by_tag_name('body').text 
+self.assertNotIn('Buy peacock feathers', page_text) 
+self.assertNotIn('make a fly', page_text)
+[...]
+```
+➊ 按照习惯,我使用两个 # 号表示“元注释”。元注释的作用是说明测试的工作方式,以及为什么这么做。使用两个井号是为了和功能测试中解说用户故事的常规注释区分开。这个元注释是发给未来的自己的消息,如果没有这个消息,到时你可能会觉得奇怪,想知道到底为什么要退出浏览器再启动一个新会话。

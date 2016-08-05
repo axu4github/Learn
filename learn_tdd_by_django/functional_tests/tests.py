@@ -2,13 +2,13 @@
 
 ''' 功能测试 '''
 
+from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import unittest
 import time
 
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -26,7 +26,8 @@ class NewVisitorTest(unittest.TestCase):
 
         # 伊迪丝听说有一个很酷的在线待办事项应用
         # 她去看了这个应用的首页
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
+        # self.browser.get('http://localhost:8000')
 
         # 她注意到网页的标题和头部都包含“To-Do”这个词
         self.assertIn('To-Do', self.browser.title)
@@ -46,6 +47,10 @@ class NewVisitorTest(unittest.TestCase):
         # 她按回车键后,页面更新了
         # 待办事项表格中显示了“1: Buy peacock feathers”
         inputbox.send_keys(Keys.ENTER)
+
+        edith_list_url = self.browser.current_url
+        self.assertRegex(edith_list_url, '/lists/.+')
+        self.check_for_row_in_list_table('1: Buy peacock feathers')
 
         # table = self.browser.find_element_by_id('id_list_table')
         # rows = table.find_elements_by_tag_name('tr')
@@ -85,7 +90,3 @@ class NewVisitorTest(unittest.TestCase):
         # 她访问那个URL,发现她的待办事项列表还在
         # 她很满意,去睡觉了
         self.fail('Finish the test!')
-
-if __name__ == '__main__':
-
-    unittest.main()
