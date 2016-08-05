@@ -89,7 +89,7 @@ def test_home_page_can_save_a_POST_request(self):
 关于设计的思考一旦开始就很难停下来,我们会冒出各种想法:或许想给每个清单起个名字或加个标题,或许想使用用户名和密码识别用户,或许想给清单添加一个较长的备注和简短的描述,或许想存储某种顺序,等等。但是,要遵守敏捷理念的另一个信条:“YAGNI”(读作 yag-knee)。它是“You aint gonna need it”的简称(“你不需要这个”)。作为软件开发者,我们从创造事物中获得乐趣。有时我们冒出一个想法,觉得可能需要,便无法抵御内心的冲动想要开发出来。可问题是,不管想法有多好,大多数情况下最终你都用不到这个功能。应用中会残留很多没用的代码,还增加了应用的复杂度。YAGNI是个真言,可以用来抵御热切的创造欲。
 
 # 元注释
-```
+``` python
 [...]
 # 页面再次更新,她的清单中显示了这两个待办事项 
 self.check_for_row_in_list_table('2: Use peacock feathers to make a fly') self.check_for_row_in_list_table('1: Buy peacock feathers')
