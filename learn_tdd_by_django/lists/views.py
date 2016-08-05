@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_protect, csrf_exempt
+from django.shortcuts import redirect, render
+from django.views.decorators.csrf import csrf_exempt
+from lists.models import Item
 
 # home_page = None
 
@@ -13,6 +13,13 @@ def home_page(request):
     #     return HttpResponse(request.POST['item_text'])
     # return render(request, 'home.html')
 
-    return render(request, 'home.html', {
-        'new_item_text': request.POST.get('item_text', ''),
-    })
+    # item = Item()
+    # item.text = request.POST.get('item_text', '')
+    # item.save()
+
+    if request.method == 'POST':
+        Item.objects.create(text=request.POST['item_text'])
+        return redirect('/')
+
+    items = Item.objects.all()
+    return render(request, 'home.html', {'items': items})
