@@ -107,3 +107,30 @@ self.assertNotIn('make a fly', page_text)
 [...]
 ```
 ➊ 按照习惯,我使用两个 # 号表示“元注释”。元注释的作用是说明测试的工作方式,以及为什么这么做。使用两个井号是为了和功能测试中解说用户故事的常规注释区分开。这个元注释是发给未来的自己的消息,如果没有这个消息,到时你可能会觉得奇怪,想知道到底为什么要退出浏览器再启动一个新会话。
+
+---
+
+``` python 
+class NewListTest(TestCase):
+    def test_saving_a_POST_request(self):
+        self.client.post(
+            '/lists/new', # ➊
+             data={'item_text': 'A new list item'}
+        )
+
+        self.assertEqual(Item.objects.count(), 1)
+        new_item = Item.objects.first()
+        self.assertEqual(new_item.text, 'A new list item')
+
+        def test_redirects_after_POST(self):
+            response = self.client.post(
+                '/lists/new', # ➊
+                data={'item_text': 'A new list item'}
+            )
+
+            self.assertEqual(response.status_code, 302)
+            self.assertEqual(response['location'], '/lists/the-only-list-in-the-world/')
+```
+➊ 顺便说一句,这里也要注意末尾的斜线——/new后面不加斜线。我的习惯是,不在修改数据库的“操作”后加斜线。
+
+---
