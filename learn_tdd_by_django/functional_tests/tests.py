@@ -5,7 +5,7 @@
 from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import time
+# import time
 
 
 class NewVisitorTest(LiveServerTestCase):
@@ -71,7 +71,8 @@ class NewVisitorTest(LiveServerTestCase):
         #     [row.text for row in rows]
         # )
 
-        self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
+        self.check_for_row_in_list_table(
+            '2: Use peacock feathers to make a fly')
         self.check_for_row_in_list_table('1: Buy peacock feathers')
 
         # 现在一个叫作弗朗西斯的新用户访问了网站
@@ -108,4 +109,4 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertIn('Buy milk', page_text)
 
         # 两人都很满意,去睡觉了
-        self.fail('Finish the test!')
+        # self.fail('Finish the test!')
