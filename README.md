@@ -9,6 +9,7 @@
 - learn_hexo | [hexo](https://hexo.io/) | 基于node.js的静态网站博客框架，推荐使用[NexT](https://github.com/iissnan/hexo-theme-next)主题
 - learn_jekyll | [jekyll](https://jekyllrb.com/) | 静态网站框架，github.io默认支持
 - learn_python | [pyhton](https://www.python.org/) | 开发语言
+- learn_scala_with_sbt | [scala](http://www.scala-lang.org/) 开发语言 | [sbt](http://www.scala-sbt.org/index.html) 构建、依赖、编译、scala程序
 - learn_scrapy | [scrapy](http://scrapy.org/) | 基于python的网络爬虫
 - learn_selenium_by_python | [selenium](http://docs.seleniumhq.org/) *#!# 访问官网需要翻墙* | 测试工具，可以通过Web dirver 打开一个真实的浏览器并模拟浏览器任何动作
 - learn_shell | [linux shell](https://github.com/torvalds/linux) | linxu系统可直接执行程序语言
