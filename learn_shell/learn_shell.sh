@@ -2,6 +2,7 @@
 #
 #
 # 学习SHELL
+#
 
 # 定义变量
 SPARK_HOME='foo'
@@ -55,3 +56,27 @@ shift
 
 # 输出系统当前用户
 echo $USER
+
+# 返回执行命令的返回值
+# 输入：touch /tmp/test; echo $?
+# 输出：若 touch /tmp/test 执行成功则返回0，失败则返回非0 
+echo $?
+
+# 返回当前所有输入参数
+# 如果之前有执行shift操作，不返回已经被shift移除的参数
+# 输入: ./learn_shell.sh 1 2 3 4 5
+# 输出: 1 2 3 4 5
+# 输入2: ./learn_shell.sh 1 2 3 4 5
+#       shift (参数左移一位，第一个参数被移除)
+# 输出2: 2 3 4 5 (因为执行过shift命令，所以参数1已经被移除，再执行$@时，则返回未被移除的所有参数)
+echo "$@"
+
+# ps 命令为返回进程信息命令
+# -p 参数是指进程号
+# -o 参数是指返回哪列，最后的"="号是指要不要返回列名
+# 输入: ps -p 1 -o comm
+# 输出: COMM（列名） 
+#      /sbin/launchd（命令）
+# 输入: ps -p 1 -o comm=
+# 输出: /sbin/launchd （因为后面加入"="号）所以只输出命令，不输出列名
+echo $(ps -p 1 -o comm=)
