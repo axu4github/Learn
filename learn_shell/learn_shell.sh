@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-#
-#
-# 学习SHELL
-#
+
+# ---
+# 学习Linux Shell(Bash)
+# ---
 
 # 定义变量
 SPARK_HOME='foo'
@@ -80,3 +80,14 @@ echo "$@"
 # 输入: ps -p 1 -o comm=
 # 输出: /sbin/launchd （因为后面加入"="号）所以只输出命令，不输出列名
 echo $(ps -p 1 -o comm=)
+
+# set -a 设置变量为系统变量，和 export VAR="VALUE" 效果相同
+# set +a 配合 set -a 在需要设置很多变量使用，-a是开始（打开）设置系统变量，+a是结束（关闭）设置系统变量
+# grep -E "SPARK_HOME|SCALA_HOME" 的意思是查找 包含SPARK_HOME 或者 包含SCALA_HOME 的内容
+set -a
+SPARK_HOME="/Users/axu/opt/spark-2.0.0-bin-hadoop2.7"
+SCALA_HOME="/Users/axu/opt/scala-2.10.4"
+set +a
+
+echo $(env)
+echo $(env | grep -E "SPARK_HOME|SCALA_HOME")
