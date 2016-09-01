@@ -91,3 +91,25 @@ set +a
 
 echo $(env)
 echo $(env | grep -E "SPARK_HOME|SCALA_HOME")
+
+# if -n 判断字符串不空（真），空（假）
+# foo=""
+if [ -n "${foo}" ]; then
+    echo "${foo}"
+else 
+    echo "bar"
+fi
+
+
+build_command() {
+    echo $(ls -l)
+    printf "%d\0" $?
+}
+
+CMD=()
+while IFS= read -d '' -r ARG; do
+  CMD+=("$ARG")
+done < <(build_command)
+
+echo "CMD: ${CMD}"
+
