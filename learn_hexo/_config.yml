@@ -7,7 +7,7 @@ title: Hexo
 subtitle:
 description:
 author: John Doe
-language:
+language: zh-Hans
 timezone:
 
 # URL
@@ -69,3 +69,6 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
+
+toc:
+  maxdepth: 3

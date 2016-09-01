@@ -3,15 +3,8 @@ title: Spark
 date: 2016-08-01 19:54:29
 tags:
 ---
-#快速开始
-
+<!-- # 快速开始 -->
 {% cq %} 快速开始 {% endcq %}
-
-123
-
-{% include_code 123 lang:python /Users/axu/code/axuProject/Learn/learn_python/test_class_del_func.py %}
-
-456
 
 - 通过Spark Shell进行互动分析
     - 基础
@@ -19,6 +12,8 @@ tags:
     - 缓存
 - Self-Contained Applications
 - Where to Go from Here
+
+<!-- more -->
 
 本教程提供了一个快速的Spark使用介绍；首先我们通过Spark Shell介绍Spark API（Python/Scala），其次展示如何（通过Java，Scala，Python）编写应用；[the programming guide]  会有更多参考。
 
@@ -50,8 +45,8 @@ Spark下载包说明
 ''Pre-build for CDH4：针对CDH4版本预编译
 ```
 
-###Spark Shell 互动分析
-####基础
+### Spark Shell 互动分析
+#### 基础
 Spark Shell 提供一个简单的方式去学习Spark API，以及提供一个强大的工具进行数据的交互式分析。它适用于任何Scala（运行在Java虚拟机上）和Python。可以开始运行它在Spark下载的目录中：
 ``` python
 ./bin/pyspark
@@ -82,7 +77,7 @@ u'# Apache Spark'
 >>> textFile.filter(lambda line: "Spark" in line).count() # 返回README.md中多少行中出现"Spark"关键字
 17
 ```
-###使用RDD进行更多的操作
+### 使用RDD进行更多的操作
 RDD的actions方法和transformations方法可以用于更多复杂的计算上。让我们找出”README.md” 文件单行中最多单词的数量。
 ``` python
 >>> textFile.map(lambda line: len(line.split())).reduce(lambda a, b: a if (a > b) else b) # 找到单行中最多单词的数量
@@ -120,7 +115,7 @@ Hadoop推广时，一个常用的MapReduce方法（Word Count）。在Spark中�
 >>> wordCounts.collect()
 [(u'when', 1), (u'R,', 1), (u'including', 3), (u'computation', 1), (u'using:', 1), (u'guidance', 2), ...]
 ```
-###缓存
+### 缓存
 Spark也支持将数据缓存在集群的内存中。这是一个非常有用的方法，当数据经常重复使用，比如当查询一个规模小并且经常被访问的数据集，或者当运行一个类似于“PagePank”的迭代计算。举一个简单的例子，让我们缓存linesWithSpark数据集：
 ``` python
 >>> linesWithSpark.cache()
