@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 
 public class learn {  
 
-    String javaHome;
+    static String javaHome;
 
     static String join(String sep, String... elements) {
         StringBuilder sb = new StringBuilder();
@@ -48,6 +48,17 @@ public class learn {
         }
         
         System.out.println(join(File.separator, System.getProperty("java.home"), "bin", "java"));
+
+        String entries = "/a/b/c/d/";
+        System.out.println(File.pathSeparator);
+        System.out.println(Pattern.quote(File.pathSeparator));
+
+        String[] split = entries.split(File.pathSeparator);
+        
+        for (String entry : split) {
+            System.out.println(entry);    
+        }
+        
     }
 }
 
