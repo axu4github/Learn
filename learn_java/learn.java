@@ -1,4 +1,4 @@
-import java.io.BufferedReader;
+// import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -36,11 +36,16 @@ public class learn {
     {  
         System.out.println("Hello");
 
-        // if (javaHome != null) {
-        //     System.out.println("java != null");
-        // } else {
-        //     System.out.println("java == null");
-        // }
+        // 如果变量在类中，如果不是静态类型的那么就必须要实例化该类，再通过实例化对象调用变量
+        // ```java
+        // learn l = new learn();
+        // l.javaHome != null
+        // ```
+        if (javaHome != null) {
+            System.out.println("java != null");
+        } else {
+            System.out.println("java == null");
+        }
         
         System.out.println(join(File.separator, System.getProperty("java.home"), "bin", "java"));
     }
