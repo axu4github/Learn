@@ -18,6 +18,7 @@
     "hexo-server": "^0.2.0",
     "hexo-tag-admonition": "^1.2.0",
     "hexo-tag-bootstrap": "0.0.8",
+    "hexo-tag-kbd": "0.0.1",
     "hexo-toc": "^1.0.3"
   }
 }
