@@ -24,4 +24,5 @@ class A(object):
 
 
 if __name__ == '__main__':
-    A().execute()
+    v = A
+    v().execute()
