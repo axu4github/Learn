@@ -100,16 +100,32 @@ else
     echo "bar"
 fi
 
-
+# print "\0" 类似于数组的分隔符
 build_command() {
-    echo $(ls -l)
+    echo $(ls -a)
+    printf "\0"
+    echo "456"
+    printf "\0"
+    echo "789"
+    printf "\0"
     printf "%d\0" $?
 }
 
+# 将build_command方法的输出作为输入写入（类似数组的方式）变量CMD中
 CMD=()
 while IFS= read -d '' -r ARG; do
   CMD+=("$ARG")
 done < <(build_command)
 
+# > echo "CMD: ${CMD}" 
+# CMD: . .. learn_shell.sh
 echo "CMD: ${CMD}"
+
+# 带上'[@]'会将所有内容打出，游标是从0开始，例 echo ${CMD[1]} 输出为：456 
+# > echo "CMD: ${CMD[@]}"
+# CMD: . .. learn_shell.sh
+#  456
+#  789
+#  0
+echo "CMD: ${CMD[@]}"
 
