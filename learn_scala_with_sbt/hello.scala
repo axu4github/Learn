@@ -4,7 +4,7 @@ trait Log {
     def lg = {
         println("2. tarit def log.")
         
-        println(s"4. ${Log.init_arg}")
+        println(s"5. ${Log.init_arg}")
     }
 }
 
@@ -12,6 +12,8 @@ object Log {
     println(s"3. object Log class.")
 
     var init_arg = "object Log init_arg."
+
+    println(s"4. after define var.")    
 }
 
 
@@ -49,6 +51,20 @@ object HelloWorld extends Log {
         for (arg: String <- args) {
             println(arg)
         }
+
+        def register(arg1: String)(arg2: Boolean) = {
+            println("{" + arg1 + "}, {" + arg2 + "}")
+        }
+
+
+        Seq("TERM", "HUP", "INT").foreach { sig =>
+            // log.error("RECEIVED SIGNAL " + sig)
+            // SignalUtils.register(sig)(false)
+            register(sig) {
+                println("RECEIVED SIGNAL " + sig)
+                false
+            }
+        }
     }
 
     def another_func() {
@@ -57,3 +73,14 @@ object HelloWorld extends Log {
 
     println("after define main.")
 }
+
+
+
+
+
+
+
+
+
+
+
