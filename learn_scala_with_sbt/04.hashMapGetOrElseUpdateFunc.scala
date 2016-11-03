@@ -3,8 +3,17 @@
  * 
  */
 
-object main {
+class ActionHandler() {
+
+    def register(arg: String) = {
+        println(arg)
+    }
+}
+
+object Main {
     def main(args: Array[String]): Unit = {
-        var hm = new scala.collection.mutable.HashMap
+        var handlers = new scala.collection.mutable.HashMap[String, ActionHandler]
+        val handler = handlers.getOrElseUpdate("a", new ActionHandler())
+        handler.register("call ActionHandler register")
     }
 }
