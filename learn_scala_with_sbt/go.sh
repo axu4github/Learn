@@ -8,13 +8,17 @@ LOCAL_DIR=$(dirname $0)
 CMD="rm -rf $LOCAL_DIR/*.class"
 
 echo "=== 开始清理 $LOCAL_DIR/*.class 文件 ==="
+echo "..."
 ${CMD}
+echo "..."
 echo "=== 完成清理 $LOCAL_DIR/*.class 文件 ==="
-
+echo ""
 echo "=== 开始编译文件 [$1] ... ==="
+echo ""
 scalac $1
+echo ""
 echo "=== 完成编译文件 [$1] ... ==="
-
+echo ""
 echo "=== 调用 Enter 主方法 ... ==="
 echo ""
 scala Enter
