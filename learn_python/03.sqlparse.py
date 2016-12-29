@@ -31,10 +31,23 @@ if __name__ == "__main__":
             b.t2_col1
     """
 
-    def getTokens(sql): return sqlparse.parse(sql)[0].tokens
-    def getKeywords(sql): return [item.value.upper() for item in sqlparse.parse(sql)[0].tokens if item.ttype is Keyword]
+    def getTokens(sql):
+        return sqlparse.parse(sql)[0].tokens
+
+    def getKeywords(sql):
+        return [item.value.upper() for item in sqlparse.parse(sql)[0].tokens if item.ttype is Keyword]
+
+    def existsKeywords(sql, kws, levels=1):
+        print(kws.split(" "))
+        for kw in kws.split(" "):
+            if not (kw == " " or kw == ""):
+                if kw.upper() not in getKeywords(sql):
+                    return False
+
+        return True
 
     tokens = getTokens(sql)
     kws = getKeywords(sql)
     print(tokens)
     print(kws)
+    print(existsKeywords(sql, ""))
