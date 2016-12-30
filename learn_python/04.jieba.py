@@ -11,11 +11,13 @@ jieba.load_userdict('00.fixtures/01.jieba_dicts/customer.txt')
 jieba.add_word("到北", freq=2000000000, tag='v')
 jieba.add_word("来到", freq=3000000000, tag='v')
 jieba.add_word("清华")
+jieba.add_word("在北")
 # print(jieba.suggest_freq('京清', True))
 # print(jieba.suggest_freq(('华', '大'), True))
 
 words = "我来到北京清华大学了"
 # words = "华夏银行"
+words = "教授正在北京教授自然语言处理课程"
 seg_list = jieba.cut(words, cut_all=True, HMM=True)
 # 我/ 来到/ 到北/ 北京/ 清华/ 清华大学/ 华大/ 大学/ 了
 print("/ ".join(seg_list))
