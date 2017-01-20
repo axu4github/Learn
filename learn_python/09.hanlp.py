@@ -18,10 +18,13 @@ def show(content, title=None):
 if __name__ == '__main__':
     try:
         startJVM(
-            '/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/MacOS/libjli.dylib',
-            '-Djava.class.path=/Users/axu/code/axuProject/Learn/learn_python/00.fixtures/02.hanlp/hanlp-portable-1.3.1.jar',
-            '-Xms1g',
-            '-Xmx1g'
+            "/Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/MacOS/libjli.dylib",
+            # '-Djava.class.path=/Users/axu/code/axuProject/Learn/learn_python/00.fixtures/02.hanlp/hanlp-portable-1.3.1.jar',
+            "-Djava.class.path=/Users/axu/code/axuProject/Learn/learn_python/00.fixtures/02.hanlp/hanlp-1.3.1.jar:/Users/axu/code/axuProject/Learn/learn_python/00.fixtures/02.hanlp/",
+            # "-Djava.class.path=/Users/axu/Downloads/data/hanlp-portable-1.3.1.jar",
+            # "-Djava.class.path=/Users/axu/code/axuProject/Learn/learn_python/00.fixtures/02.hanlp/hanlp-1.3.1.jar",
+            "-Xms1g",
+            "-Xmx1g"
         )
 
         s = '中国科学院计算技术研究所的宗成庆教授正在教授自然语言处理课程'
@@ -90,6 +93,7 @@ if __name__ == '__main__':
         CoreStopWordDictionary.apply(word_list)
         show(word_list, '停用词-基于索引分词结果')
         print(word_list[0])
+        show(HanLP.parseDependency("徐先生还具体帮助他确定了把画雄鹰、松鼠和麻雀作为主攻目标。"), '依存语法分析')
     except Exception as e:
         print(e)
     finally:

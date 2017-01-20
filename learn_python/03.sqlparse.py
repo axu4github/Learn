@@ -51,3 +51,56 @@ if __name__ == "__main__":
     print(tokens)
     print(kws)
     print(existsKeywords(sql, ""))
+
+    sql = '''
+    select d_week_seq1
+       ,round(sun_sales1/sun_sales2,2)
+       ,round(mon_sales1/mon_sales2,2)
+       ,round(tue_sales1/tue_sales2,2)
+       ,round(wed_sales1/wed_sales2,2)
+       ,round(thu_sales1/thu_sales2,2)
+       ,round(fri_sales1/fri_sales2,2)
+       ,round(sat_sales1/sat_sales2,2)
+     from
+     (select wswscs.d_week_seq d_week_seq1
+            ,sun_sales sun_sales1
+            ,mon_sales mon_sales1
+            ,tue_sales tue_sales1
+            ,wed_sales wed_sales1
+            ,thu_sales thu_sales1
+            ,fri_sales fri_sales1
+            ,sat_sales sat_sales1
+      from wswscs,date_dim 
+      where date_dim.d_week_seq = wswscs.d_week_seq and
+            d_year = [YEAR]) y,
+     (select wswscs.d_week_seq d_week_seq2
+            ,sun_sales sun_sales2
+            ,mon_sales mon_sales2
+            ,tue_sales tue_sales2
+            ,wed_sales wed_sales2
+            ,thu_sales thu_sales2
+            ,fri_sales fri_sales2
+            ,sat_sales sat_sales2
+      from wswscs
+          ,date_dim 
+      where date_dim.d_week_seq = wswscs.d_week_seq and
+            d_year = [YEAR]+1) z
+     where d_week_seq1=d_week_seq2-53
+     order by d_week_seq1;
+    '''
+
+    print "*" * 40
+    print getTokens(sql)
+    print "*" * 40
+
+    sql = '''
+    select 
+        *, 
+        (select sa.script_id from test.scripts_app as sa where sa.id = s.id) as script_id
+    from 
+        test.scripts as s 
+    '''
+
+    print getTokens(sql)
+    print "*" * 40
+
