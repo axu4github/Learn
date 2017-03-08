@@ -74,11 +74,11 @@ if __name__ == '__main__':
         test_str = '教授正在北京教授自然语言处理课程'
         segment = HanLP.newSegment()
         show(segment.seg(test_str), '标注调整之前')
-        segment.enablePartOfSpeechTagging(True)
-        segment.enableOrganizationRecognize(True)
-        segment.enablePlaceRecognize(True)
-        segment.enableTranslatedNameRecognize(True)
-        segment.enableNameRecognize(True)
+        # segment.enablePartOfSpeechTagging(True)
+        # segment.enableOrganizationRecognize(True)
+        # segment.enablePlaceRecognize(True)
+        # segment.enableTranslatedNameRecognize(True)
+        # segment.enableNameRecognize(True)
         show(segment.seg(test_str), '标注调整之后')
 
         text = '小区居民有的反对喂养流浪猫，而有的居民却赞成喂养这些小宝贝'
@@ -93,7 +93,14 @@ if __name__ == '__main__':
         CoreStopWordDictionary.apply(word_list)
         show(word_list, '停用词-基于索引分词结果')
         print(word_list[0])
-        show(HanLP.parseDependency("徐先生还具体帮助他确定了把画雄鹰、松鼠和麻雀作为主攻目标。"), '依存语法分析')
+        # show(HanLP.parseDependency("徐先生还具体帮助他确定了把画雄鹰、松鼠和麻雀作为主攻目标。"), '依存语法分析')
+
+        CustomDictionary.add('中华', 'n 1000000000')
+        CustomDictionary.add('中华', 'n 1')
+        text = '中华人民共和国'
+        show(segment.seg(text), '-')
+
+
     except Exception as e:
         print(e)
     finally:
