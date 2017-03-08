@@ -2,6 +2,7 @@
 
 from snownlp import SnowNLP
 import sys
+import os
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
@@ -43,3 +44,13 @@ if __name__ == '__main__':
     show(s.sentiments, is_list=False, title='情感')
     # show(s.pinyin)
     # show(s.summary(), title='概要')
+
+    # 情感分析模型训练测试
+    # base_path = os.path.dirname(os.path.abspath(__file__))
+    # neg_data = os.path.join(base_path, '00.fixtures/04.snownlp/neg.txt')
+    # pos_data = os.path.join(base_path, '00.fixtures/04.snownlp/pos.txt')
+    # sentiment_data = os.path.join(base_path, '00.fixtures/04.snownlp/sentiment.marshal')
+
+    # from snownlp import sentiment
+    # sentiment.train(neg_data, pos_data)
+    # sentiment.save(sentiment_data)
