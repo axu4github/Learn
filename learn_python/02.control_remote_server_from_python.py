@@ -20,7 +20,7 @@ if __name__ == "__main__":
     myclient.connect("10.0.3.45", port=22,
                      username="root", password="root123")
     # 在远程机执行shell命令
-    stdin, stdout, stderr = myclient.exec_command("l -l")
+    stdin, stdout, stderr = myclient.exec_command("ls -l")
     # 读返回结果
     print stdout.read()
     print stderr.read()
