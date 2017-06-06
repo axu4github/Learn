@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader
 from django.core.urlresolvers import reverse
 from .models import Question
@@ -10,6 +10,15 @@ def index(request):
     context = {'latest_question_list': latest_question_list}
     return render(request, 'polls/index.html', context)
 
+
+def all(request):
+    questions = Question.objects.all().values()
+    r = []
+    for q in questions:
+        tmp = {'id': q['id'], 'question_text': q['question_text']}
+        r.append(tmp)
+
+    return JsonResponse(r, safe=False)
 
 def list(request):
     return render(request, 'polls/list.html')

@@ -9,6 +9,8 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     # ex: /polls/list/ 
     url(r'^list/$', views.list, name='list'),
+    # ex: /polls/list/ 
+    url(r'^api/all/$', views.all, name='all'),
     # ex: /polls/5/
     url(r'^(?P<question_id>[0-9]+)/$', views.detail, name='detail'),
     # ex: /polls/5/results/
