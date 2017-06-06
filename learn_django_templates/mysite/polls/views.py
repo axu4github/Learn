@@ -11,8 +11,8 @@ def index(request):
     return render(request, 'polls/index.html', context)
 
 
-def new(request):
-    return render(request, 'polls/new.html')
+def list(request):
+    return render(request, 'polls/list.html')
 
 
 def detail(request, question_id):
