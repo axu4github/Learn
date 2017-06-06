@@ -15,10 +15,15 @@ def all(request):
     questions = Question.objects.all().values()
     r = []
     for q in questions:
-        tmp = {'id': q['id'], 'question_text': q['question_text']}
+        tmp = {
+            'id': q['id'], 
+            'question_text': q['question_text'],
+            'pub_date': q['pub_date'],
+        }
         r.append(tmp)
 
     return JsonResponse(r, safe=False)
+
 
 def list(request):
     return render(request, 'polls/list.html')

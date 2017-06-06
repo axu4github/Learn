@@ -19,11 +19,12 @@
                 "processing": true,
                 "ajax": {
                     "url": "{% url 'polls:all' %}",
-                    "dataSrc": ""
+                    "dataSrc": "",
                 },
                 "columns": [
                     { "data": "id" },
-                    { "data": "question_text" }
+                    { "data": "question_text" },
+                    { "data": "pub_date" },
                 ]
             });
 
@@ -71,6 +72,7 @@
                         <tr>
                             <th>id</th>
                             <th>question_text</th>
+                            <th>pub_date</th>
                         </tr>
                     </thead>
                 </table>
