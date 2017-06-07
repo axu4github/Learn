@@ -4,41 +4,35 @@
 {% block cutomer-script %}
     <script>
         $(function(){
+            function click_search_btn_fun(){
+                table.ajax.url(
+                    "{% url 'polls:get' %}" + "?qid=" + $("#search_text").val());
+                table.ajax.reload();
+            }
+
             var table = $('#example1').DataTable({
                 "paging": false,
-                // "lengthChange": false,
                 "searching": false,
                 "ordering": false,
                 "autoWidth": false,
-                // "info": true,
                 "processing": true,
                 "ajax": {
                     "url": "{% url 'polls:all' %}",
-                    "dataSrc": "",
+                    "dataSrc": function(response){ return response; },
                 },
                 "columns": [
-                    { "data": "id" },
-                    { "data": "question_text" },
-                    { "data": "pub_date" },
+                    { "data": "id", "title": "编号", "sWidth": "10%" },
+                    { "data": "question_text", "title": "问题" },
+                    { "data": "pub_date", "title": "发布日期" },
                 ],
-                "dom": '<"toolbar">frtip',
+                "language": {
+                    "emptyTable": "无",
+                    "info": "总共 _TOTAL_ 条数据",
+                    "infoEmpty": "没有数据", 
+                }
             });
 
-            var search_toolbar = '<div class="input-group col-xs-3">' +
-                                    '<input id="search_text" type="text" class="form-control" />' +
-                                    '<span class="input-group-btn">' +
-                                        '<button id="search_btn" type="button" class="btn btn-info btn-flat">Go!</button>' +
-                                    '</span>' +
-                                 '</div>';
-            $("div.toolbar").html(search_toolbar);
-            $("#search_btn").click(function(){ 
-                var search_val = $("#search_text").val();
-                console.info("Search Val: " + search_val);
-                table.ajax.url("/polls/api/get/?qid=" + search_val);
-                // table.ajax.data = {"pid": search_val}
-                // console.info(table.ajax.data);
-                table.ajax.reload();
-            });
+            $("#search_btn").click(click_search_btn_fun);
         });
     </script>
 {% endblock %}
@@ -69,6 +63,12 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+                <div class="input-group col-xs-3">
+                    <input id="search_text" type="text" class="form-control" />
+                    <span class="input-group-btn">
+                        <button id="search_btn" type="button" class="btn btn-info btn-flat">搜索</button>
+                    </span>
+                </div>
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
