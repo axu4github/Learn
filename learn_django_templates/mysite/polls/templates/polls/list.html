@@ -25,6 +25,7 @@
                     { "data": "question_text", "title": "问题" },
                     { "data": "pub_date", "title": "发布日期" },
                 ],
+                "dom": "",
                 "language": {
                     "emptyTable": "无",
                     "info": "总共 _TOTAL_ 条数据",
@@ -55,37 +56,44 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <div class="input-group col-xs-3">
-                    <input id="search_text" type="text" class="form-control" />
-                    <span class="input-group-btn">
-                        <button id="search_btn" type="button" class="btn btn-info btn-flat">搜索</button>
-                    </span>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Data Table With Full Features</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="table-toolbar">
+                            <div class="input-group col-xs-3">
+                                <input id="search_text" type="text" class="form-control" />
+                                <span class="input-group-btn">
+                                    <button id="search_btn" type="button" class="btn btn-info btn-flat">搜索</button>
+                                </span>
+                            </div>
+                            <!-- <div class="upload-btn col-xs-3">
+                                <button type="button" class="btn btn-block btn-info">上传</button>
+                            </div> -->
+                        </div>
+                        <div class="table-contents">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>question_text</th>
+                                        <th>pub_date</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
                 </div>
-                <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>question_text</th>
-                            <th>pub_date</th>
-                        </tr>
-                    </thead>
-                </table>
+                <!-- /.box -->
             </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
+            <!-- /.col -->
         </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
+        <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>
