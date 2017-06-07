@@ -31,7 +31,12 @@
                                  '</div>';
             $("div.toolbar").html(search_toolbar);
             $("#search_btn").click(function(){ 
-                alert($("#search_text").val());
+                var search_val = $("#search_text").val();
+                console.info("Search Val: " + search_val);
+                table.ajax.url("/polls/api/get/?qid=" + search_val);
+                // table.ajax.data = {"pid": search_val}
+                // console.info(table.ajax.data);
+                table.ajax.reload();
             });
         });
     </script>

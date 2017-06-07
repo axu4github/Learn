@@ -16,11 +16,26 @@ def all(request):
     r = []
     for q in questions:
         tmp = {
-            'id': q['id'], 
+            'id': q['id'],
             'question_text': q['question_text'],
             'pub_date': q['pub_date'],
         }
         r.append(tmp)
+
+    return JsonResponse(r, safe=False)
+
+
+def get(request):
+    r = []
+    try:
+        q = Question.objects.get(pk=request.GET['qid'])
+        r.append({
+            'id': q.id,
+            'question_text': q.question_text,
+            'pub_date': q.pub_date,
+        })
+    except Exception as e:
+        pass
 
     return JsonResponse(r, safe=False)
 
