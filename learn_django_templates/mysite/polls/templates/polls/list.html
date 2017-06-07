@@ -4,18 +4,12 @@
 {% block cutomer-script %}
     <script>
         $(function(){
-            $("#search-btn").click(function(){
-                // console.info($("#search-text").text);
-                alert("123");
-            });
-
             var table = $('#example1').DataTable({
                 "paging": false,
                 // "lengthChange": false,
                 "searching": false,
                 "ordering": false,
                 // "info": true,
-                // "autoWidth": false,
                 "processing": true,
                 "ajax": {
                     "url": "{% url 'polls:all' %}",
@@ -25,11 +19,19 @@
                     { "data": "id" },
                     { "data": "question_text" },
                     { "data": "pub_date" },
-                ]
+                ],
+                "dom": '<"toolbar">frtip',
             });
 
-            table.on('search.dt', function(e, settings){
-                console.info(table.search())
+            var search_toolbar = '<div class="input-group col-xs-3">' +
+                                    '<input id="search_text" type="text" class="form-control" />' +
+                                    '<span class="input-group-btn">' +
+                                        '<button id="search_btn" type="button" class="btn btn-info btn-flat">Go!</button>' +
+                                    '</span>' +
+                                 '</div>';
+            $("div.toolbar").html(search_toolbar);
+            $("#search_btn").click(function(){ 
+                alert($("#search_text").val());
             });
         });
     </script>
@@ -61,12 +63,6 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <div class="input-group col-xs-3">
-                    <input id="search-text" type="text" class="form-control" />
-                    <span class="input-group-btn">
-                        <button id="search-btn" type="button" class="btn btn-info btn-flat">Go!</button>
-                    </span>
-                </div>
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -89,3 +85,4 @@
   </div>
   <!-- /.content-wrapper -->
 {% endblock %}
+
