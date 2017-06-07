@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader
 from django.core.urlresolvers import reverse
@@ -26,18 +26,22 @@ def all(request):
 
 
 def get(request):
-    r = []
-    try:
-        q = Question.objects.get(pk=request.GET['qid'])
-        r.append({
-            'id': q.id,
-            'question_text': q.question_text,
-            'pub_date': q.pub_date,
-        })
-    except Exception as e:
-        pass
+    qid = request.GET.get('qid', None)
+    if qid is None or qid == "":
+        return HttpResponseRedirect(reverse('polls:all'))
+    else:
+        r = []
+        try:
+            q = Question.objects.get(pk=qid)
+            r.append({
+                'id': q.id,
+                'question_text': q.question_text,
+                'pub_date': q.pub_date,
+            })
+        except Exception as e:
+            pass
 
-    return JsonResponse(r, safe=False)
+        return JsonResponse(r, safe=False)
 
 
 def list(request):
