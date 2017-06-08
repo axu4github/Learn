@@ -3,6 +3,7 @@
 
 {% block cutomer-script %}
     <script>
+        var current_dir = "/";
         $(function(){
             var table = $('#example1').DataTable({
                 "paging": false,
@@ -21,10 +22,20 @@
                 ],
             });
 
-            $("#search_btn").click(function(){ 
+            function search(){
                 var search_val = $("#search_text").val();
                 console.info("Search Val: " + search_val);
+                current_dir = search_val;
                 table.ajax.url("/polls/api/get/?qid=" + search_val).load();
+            }
+
+            $("#search_btn").click(function(){ search(); });
+
+            $("#search_text").keydown(function(e){
+                console.info(e.which);
+                if (e.which == 13) {
+                    search();
+                }
             });
         });
     </script>
