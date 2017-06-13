@@ -39,12 +39,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'xadmin',
-    # 'crispy_forms',
-
-    'mysite',
-    # 'reversion',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -83,22 +77,7 @@ WSGI_APPLICATION = 'learn_django.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'learn_django',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    },
-    # 'metadata': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'metadata',
-    #     'USER' : 'root',
-    #     'PASSWORD': 'root123',
-    #     'HOST': '10.0.1.14',
-    #     'PORT': '3306',
-    # }
+    
 }
 
 # 数据库路由设置（多数据库使用）
