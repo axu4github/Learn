@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls',
+    'play_with_signal.apps.PlayWithSignalConfig',
 )
 
 MIDDLEWARE_CLASSES = (
