@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'polls',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -104,3 +105,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# 用来存放上传文件的目录
+MEDIA_ROOT = os.path.join(BASE_DIR, 'medias')
