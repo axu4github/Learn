@@ -110,3 +110,6 @@ STATIC_URL = '/static/'
 
 # 用来存放上传文件的目录
 MEDIA_ROOT = os.path.join(BASE_DIR, 'medias')
+
+# 自定义用户类
+AUTH_USER_MODEL = 'play_with_auth.Users'
