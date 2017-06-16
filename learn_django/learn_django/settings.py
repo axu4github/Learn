@@ -121,3 +121,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'medias')
 
 # 自定义用户类
 AUTH_USER_MODEL = 'play_with_auth.Users'
+
+LOGIN_URL = '/auth/login/'

@@ -17,7 +17,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^forms/', include('play_with_form.urls', namespace="forms")),
-    url(r'^', include('play_with_auth.urls', namespace="auth")),
+    url(r'^auth/', include('play_with_auth.urls', namespace="auth")),
     url(r'^polls/', include('polls.urls', namespace="polls")),
     url(r'^admin/', include(admin.site.urls)),
 ]

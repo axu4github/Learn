@@ -23,6 +23,9 @@
                folder instead of downloading all of them to reduce the load. -->
             <link rel="stylesheet" type="text/css" href="{% static 'learn_django/dist/css/skins/_all-skins.min.css' %}" />
 
+            <!-- iCheck for checkboxes and radio inputs -->
+            <link rel="stylesheet" href="{% static 'learn_django/plugins/iCheck/all.css' %}">
+
             <style type="text/css">
                 @font-face {
                     font-family: 'Rochester';
@@ -46,44 +49,49 @@
             <![endif]-->
         {% endblock %}
     </head>
-    <body class="hold-transition skin-blue sidebar-mini">
-        <div class="wrapper">
-            {% block wrapper %} 
-                {% block header %} {% include 'learn_django/header.html' %} {% endblock %}
-                {% block left-sidebar %} {% include 'learn_django/left-sidebar.html' %} {% endblock %}
-                {% block content %}{% endblock %}
-                {% block right-sidebar %} 
-                    {% include 'learn_django/right-sidebar.html' %} 
-                    <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
-                    <div class="control-sidebar-bg"></div>
+    {% block body %} 
+        <body class="hold-transition skin-blue sidebar-mini">
+            <div class="wrapper">
+                {% block wrapper %} 
+                    {% block header %} {% include 'learn_django/header.html' %} {% endblock %}
+                    {% block left-sidebar %} {% include 'learn_django/left-sidebar.html' %} {% endblock %}
+                    {% block content %}{% endblock %}
+                    {% block right-sidebar %} 
+                        {% include 'learn_django/right-sidebar.html' %} 
+                        <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+                        <div class="control-sidebar-bg"></div>
+                    {% endblock %}
+                    {% block footer %} 
+                        <footer class="main-footer">
+                            <div class="pull-right ilogo">Axu.Design</div>
+                        </footer>
+                    {% endblock %}
                 {% endblock %}
-                {% block footer %} 
-                    <footer class="main-footer">
-                        <div class="pull-right ilogo">Axu.Design</div>
-                    </footer>
-                {% endblock %}
+            </div>
+
+            {% block script %}
+                <!-- jQuery 2.2.3 -->
+                <script src="{% static 'learn_django/plugins/jQuery/jquery-2.2.3.min.js' %}"></script>
+                <!-- Bootstrap 3.3.6 -->
+                <script src="{% static 'learn_django/bootstrap/js/bootstrap.min.js' %}"></script>
+                <!-- DataTables -->
+                <script src="{% static 'learn_django/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+                <script src="{% static 'learn_django/plugins/datatables/dataTables.bootstrap.min.js' %}"></script>
+                <!-- SlimScroll -->
+                <script src="{% static 'learn_django/plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
+                <!-- FastClick -->
+                <script src="{% static 'learn_django/plugins/fastclick/fastclick.js' %}"></script>
+                <!-- AdminLTE App -->
+                <script src="{% static 'learn_django/dist/js/app.min.js' %}"></script>
+                <!-- AdminLTE for demo purposes -->
+                <script src="{% static 'learn_django/dist/js/demo.js' %}"></script>
+
+                <!-- iCheck 1.0.1 -->
+                <script src="{% static 'learn_django/plugins/iCheck/icheck.min.js' %}"></script>
+
+                <!-- page script -->
+                {% block cutomer-script %}{% endblock %}
             {% endblock %}
-        </div>
-
-        {% block script %}
-            <!-- jQuery 2.2.3 -->
-            <script src="{% static 'learn_django/plugins/jQuery/jquery-2.2.3.min.js' %}"></script>
-            <!-- Bootstrap 3.3.6 -->
-            <script src="{% static 'learn_django/bootstrap/js/bootstrap.min.js' %}"></script>
-            <!-- DataTables -->
-            <script src="{% static 'learn_django/plugins/datatables/jquery.dataTables.min.js' %}"></script>
-            <script src="{% static 'learn_django/plugins/datatables/dataTables.bootstrap.min.js' %}"></script>
-            <!-- SlimScroll -->
-            <script src="{% static 'learn_django/plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
-            <!-- FastClick -->
-            <script src="{% static 'learn_django/plugins/fastclick/fastclick.js' %}"></script>
-            <!-- AdminLTE App -->
-            <script src="{% static 'learn_django/dist/js/app.min.js' %}"></script>
-            <!-- AdminLTE for demo purposes -->
-            <script src="{% static 'learn_django/dist/js/demo.js' %}"></script>
-            <!-- page script -->
-
-            {% block cutomer-script %}{% endblock %}
-        {% endblock %}
-    </body>
+        </body>
+    {% endblock %}
 </html>
