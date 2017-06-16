@@ -1,12 +1,12 @@
 <form action="{% url 'forms:contact' %}" method="post">
     {% csrf_token %}
     <!-- 自动渲染 -->
+    <!-- {{ form.non_field_errors }} -->
     <!-- {{ form.as_table }} -->
     <!-- {{ form.as_p }} -->
     <!-- {{ form.as_ul }} -->
 
     <!-- 手动渲染 -->
-    {{ form.non_field_errors }}
     {% if form.subject.errors %}
         <ol>
         {% for error in form.subject.errors %}
