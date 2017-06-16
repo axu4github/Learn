@@ -1,0 +1,110 @@
+{% extends "learn_django/base.html" %}
+{% load staticfiles %}
+
+{% block cutomer-script %}
+    <script type="text/javascript">
+        
+    </script>
+{% endblock %}
+
+{% block cutomer-script %}
+    <script>
+        var current_dir = "/";
+        $(function(){
+            function click_search_btn_fun(){
+                table.ajax.url(
+                    "{% url 'polls:get' %}" + "?qid=" + $("#search_text").val());
+                table.ajax.reload();
+            }
+
+            var table = $('#example1').DataTable({
+                "paging": false,
+                "searching": false,
+                "ordering": false,
+                "autoWidth": false,
+                "processing": true,
+                "scrollCollapse": true,
+                "ajax": {
+                    "url": "{% url 'polls:all' %}",
+                    "dataSrc": function(response){ return response; },
+                },
+                "columns": [
+                    { "data": "id", "title": "编号", "sWidth": "10%" },
+                    { "data": "question_text", "title": "问题" },
+                    { "data": "pub_date", "title": "发布日期" },
+                ],
+                "dom": "",
+                "language": {
+                    "emptyTable": "无",
+                    "info": "总共 _TOTAL_ 条数据",
+                    "infoEmpty": "没有数据", 
+                }
+            });
+
+            $("#search_btn").click(click_search_btn_fun);
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Data Tables
+        <small>advanced tables</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Data tables</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Data Table With Full Features</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="table-toolbar">
+                            <div class="input-group col-xs-3">
+                                <input id="search_text" type="text" class="form-control" />
+                                <span class="input-group-btn">
+                                    <button id="search_btn" type="button" class="btn btn-info btn-flat">搜索</button>
+                                </span>
+                            </div>
+                            <!-- <div class="upload-btn col-xs-3">
+                                <button type="button" class="btn btn-block btn-info">上传</button>
+                            </div> -->
+                        </div>
+                        <div class="table-contents">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>question_text</th>
+                                        <th>pub_date</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock %}
+

@@ -60,7 +60,9 @@ ROOT_URLCONF = 'learn_django.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'learn_django', 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -107,6 +109,11 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-STATICFILES_DIRS
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'learn_django', 'static'),
+]
 
 # 用来存放上传文件的目录
 MEDIA_ROOT = os.path.join(BASE_DIR, 'medias')

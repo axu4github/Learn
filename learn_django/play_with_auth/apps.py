@@ -6,6 +6,3 @@ from django.apps import AppConfig
 
 class PlayWithAuthConfig(AppConfig):
     name = 'play_with_auth'
-
-    def ready(self):
-        import play_with_auth.signals
