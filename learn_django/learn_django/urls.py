@@ -16,6 +16,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
+    url(r'^', include('play_with_auth.urls', namespace="auth")),
     url(r'^polls/', include('polls.urls', namespace="polls")),
     url(r'^admin/', include(admin.site.urls)),
 ]

@@ -16,7 +16,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">问题列表</h3>
+                            <h3 class="box-title">用户列表</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -25,21 +25,21 @@
                                     <thead>
                                         <tr>
                                             <th>编号</th>
-                                            <th>问题</th>
-                                            <th>创建时间</th>
+                                            <th>用户名</th>
+                                            <th>邮箱</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% if latest_question_list %}
-                                            {% for question in latest_question_list %}
+                                        {% if all_users %}
+                                            {% for user in all_users %}
                                                 <tr>
                                                     <td>
-                                                        <a href="{% url 'polls:detail' question.id %}">
-                                                            {{ question.id }}
+                                                        <a href="{% url 'auth:udetail' user.id %}">
+                                                            {{ user.id }}
                                                         </a>
                                                     </td>
-                                                    <td>{{ question.question_text }}</td>
-                                                    <td>{{ question.pub_date }}</td>
+                                                    <td>{{ user.username }}</td>
+                                                    <td>{{ user.email }}</td>
                                                 </tr>
                                             {% endfor %}
                                         {% endif %}
