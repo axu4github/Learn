@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'polls',
     'play_with_signal.apps.PlayWithSignalConfig',
     'play_with_auth.apps.PlayWithAuthConfig',
+    'play_with_form.apps.PlayWithFormConfig',
 )
 
 MIDDLEWARE_CLASSES = (

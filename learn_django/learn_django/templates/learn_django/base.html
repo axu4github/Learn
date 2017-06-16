@@ -23,6 +23,21 @@
                folder instead of downloading all of them to reduce the load. -->
             <link rel="stylesheet" type="text/css" href="{% static 'learn_django/dist/css/skins/_all-skins.min.css' %}" />
 
+            <style type="text/css">
+                @font-face {
+                    font-family: 'Rochester';
+                    font-style: normal;
+                    font-weight: 400;
+                    src: local('Rochester'), local('Rochester-Regular'), url({% static 'learn_django/dist/font/nE50b4-SbQ54pks-8vOpl5Bw1xU1rKptJj_0jans920.woff2' %}) format('woff2');
+                    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+                }
+
+                .ilogo {
+                    font-family: 'Rochester', cursive;
+                    font-size: 20px;
+                }
+            </style>
+
             <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
             <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
             <!--[if lt IE 9]>
@@ -44,9 +59,7 @@
                 {% endblock %}
                 {% block footer %} 
                     <footer class="main-footer">
-                        <div class="pull-right hidden-xs"><b>Version</b> 2.3.8</div>
-                        <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> 
-                        All rights reserved.
+                        <div class="pull-right ilogo">Axu.Design</div>
                     </footer>
                 {% endblock %}
             {% endblock %}
