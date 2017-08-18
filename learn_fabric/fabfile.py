@@ -2,14 +2,15 @@
 
 from __future__ import with_statement
 
+import json
 from fabric.api import local, run, cd
 
 
-def hello():
+def test_hello():
     print("Hello world!")
 
 
-def ll_something():
+def test_ll_something():
     local("ls -l")
 
 
@@ -21,7 +22,7 @@ def test_remote_context():
     """
     测试执行命令上下文
 
-    用例
+    > 执行用例
 
     ```bash
     > cd ${path_of_root}/learn_fabric
@@ -52,3 +53,16 @@ def test_remote_context():
     with cd("/opt/solr-5.5.1"):
         # run("bin/solr restart -c -m 8g -d smartv")
         run("ls -l")
+
+
+def test_get_execution_result():
+    """测试获取执行结果"""
+    with cd("/opt/solr-5.5.1"):
+        result = run("bin/solr healthcheck -c collection1 -z 10.0.3.49:9983")
+        # 捕获执行结果状态
+        print result.succeeded
+        # 捕获执行结果
+        obj = json.loads(result)
+
+        print obj
+        # print obj["shards"]
