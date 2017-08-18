@@ -3,7 +3,7 @@
 from __future__ import with_statement
 
 import json
-from fabric.api import local, run, cd
+from fabric.api import local, run, cd, settings
 
 
 def test_hello():
@@ -66,3 +66,12 @@ def test_get_execution_result():
 
         print obj
         # print obj["shards"]
+
+
+def test_get_execution_failed():
+    """测试获取执行错误"""
+    with settings(warn_only=True):
+        errors = run("ll")
+
+    print errors.failed
+    print errors
