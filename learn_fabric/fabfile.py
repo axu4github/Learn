@@ -3,7 +3,9 @@
 from __future__ import with_statement
 
 import json
-from fabric.api import local, run, cd, settings
+from fabric.api import (
+    local, run, cd, settings
+)
 
 
 def test_hello():
