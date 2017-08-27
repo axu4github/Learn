@@ -4,7 +4,7 @@
     <title></title>
 </head>
 <body>
-
+    <div id="test"></div>
 </body>
 <script type="text/javascript" src="dist/vue.js"></script>
 <script type="text/javascript">
@@ -12,8 +12,18 @@
         data: {
             a: 1
         },
+        el: "#test",
+        beforeCreate: function(){
+            console.log("a [" + this.a + "] not be created.");
+        },
         created: function(){
             console.log("a [" + this.a + "] has be created.");
+        },
+        beforeMount: function(){
+            console.log("a [" + this.a + "] before mount.");
+        },
+        beforeDestroy: function(){
+            console.log("a [" + this.a + "] not be destroy.");
         }
     })
 </script>
