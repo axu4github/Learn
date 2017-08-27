@@ -4,7 +4,12 @@
     <title></title>
 </head>
 <body>
-    <div id="test"></div>
+    <div id="test">{{ a }}</div>
+    <div class="test01" v-html="rawHtml"></div>
+    <div class="test02" v-bind:id="dynamicId">{{ dynamicValue }}</div>
+    <div class="test03" v-bind:id="'dynamicId[' + dynamicId + ']'">
+        {{ ok ? "YES" : "NO" }}
+    </div>
 </body>
 <script type="text/javascript" src="dist/vue.js"></script>
 <script type="text/javascript">
@@ -25,6 +30,30 @@
         beforeDestroy: function(){
             console.log("a [" + this.a + "] not be destroy.");
         }
-    })
+    });
+
+    var vm01 = new Vue({
+        data: {
+            rawHtml: "<hr /> a <hr />"
+        },
+        el: ".test01"
+    });
+
+    var vm02 = new Vue({
+        data: {
+            dynamicId: "dynamicId-test02",
+            dynamicValue: "dynamicValue"
+        },
+        el: ".test02"
+    });
+
+    var vm03 = new Vue({
+        data: {
+            dynamicId: "dynamicId-test03",
+            ok: true
+        },
+        el: ".test03"
+    });
+
 </script>
 </html>
