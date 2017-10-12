@@ -3,11 +3,16 @@
 import happybase
 from functools import wraps
 from time import clock
+import click
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 
 HBASE_HOST = "10.0.3.41"
 HBASE_TABLE = "smartv"
 DEFAULT_ROW_KEY = b"dy-gz-t54548716_20150201_8221862.mp3"
-GET_ROW_NUMBER = 10000
+GET_ROW_NUMBER = 1000
 
 
 def time_analyze(func):
@@ -28,29 +33,34 @@ def time_analyze(func):
 
 
 @time_analyze
-def single_get():
+def single_get(row_number):
     """ 单条获取 hbase 记录 """
     connection = happybase.Connection(HBASE_HOST)
     table = connection.table(HBASE_TABLE)
-    for i in range(GET_ROW_NUMBER):
+    for i in range(row_number):
         table.row(DEFAULT_ROW_KEY)
 
 
 @time_analyze
-def multiple_get():
+def multiple_get(row_number):
     """ 多条获取 hbase 记录 """
     connection = happybase.Connection(HBASE_HOST)
     table = connection.table(HBASE_TABLE)
     row_keys = []
-    for i in range(GET_ROW_NUMBER):
+    for i in range(row_number):
         row_keys.append(DEFAULT_ROW_KEY)
 
     table.rows(row_keys)
 
 
-def main():
-    single_get()
-    multiple_get()
+@click.command()
+@click.option("--row_number", default=0, type=click.INT, help="获取记录数量")
+def main(row_number):
+    if row_number == 0:
+        row_number = GET_ROW_NUMBER
+
+    single_get(row_number)
+    multiple_get(row_number)
 
 
 if __name__ == "__main__":
