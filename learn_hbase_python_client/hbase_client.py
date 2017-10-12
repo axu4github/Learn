@@ -1,24 +1,57 @@
+# -*- coding: utf-8 -*-
 
 import happybase
+from functools import wraps
+from time import clock
 
-connection = happybase.Connection('10.0.3.41')
-table = connection.table('smartv')
+HBASE_HOST = "10.0.3.41"
+HBASE_TABLE = "smartv"
+DEFAULT_ROW_KEY = b"dy-gz-t54548716_20150201_8221862.mp3"
+GET_ROW_NUMBER = 10000
 
-# table.put(b'row-key', {b'family:qual1': b'value1',
-#                        b'family:qual2': b'value2'})
 
-row = table.row(b'dy-gz-t51851828_20150115_7371575.mp3')
+def time_analyze(func):
+    """ 装饰器 获取程序执行时间 """
+    @wraps(func)
+    def consume(*args, **kwargs):
+        # 重复执行次数（单次执行速度太快）
+        exec_times = 1
+        start = clock()
+        for i in range(exec_times):
+            r = func(*args, **kwargs)
 
-row_keys = []
-for i in range(10000):
-    row_keys.append(b'dy-gz-t54548716_20150201_8221862.mp3')
+        finish = clock()
+        print "{:<20}{:10.6} s".format(func.__name__ + ":", finish - start)
+        return r
 
-rows = table.rows(row_keys)
+    return consume
 
-for row_key in row_keys:
-    row = table.row(row_key)
 
-# for key, data in table.scan(row_prefix=b'row'):
-#     print(key, data)  # prints 'value1' and 'value2'
+@time_analyze
+def single_get():
+    """ 单条获取 hbase 记录 """
+    connection = happybase.Connection(HBASE_HOST)
+    table = connection.table(HBASE_TABLE)
+    for i in range(GET_ROW_NUMBER):
+        table.row(DEFAULT_ROW_KEY)
 
-# row = table.delete(b'row-key')
+
+@time_analyze
+def multiple_get():
+    """ 多条获取 hbase 记录 """
+    connection = happybase.Connection(HBASE_HOST)
+    table = connection.table(HBASE_TABLE)
+    row_keys = []
+    for i in range(GET_ROW_NUMBER):
+        row_keys.append(DEFAULT_ROW_KEY)
+
+    table.rows(row_keys)
+
+
+def main():
+    single_get()
+    multiple_get()
+
+
+if __name__ == "__main__":
+    main()
