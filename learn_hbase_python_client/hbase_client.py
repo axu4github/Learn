@@ -44,7 +44,8 @@ def single_get(row_number):
 @time_analyze
 def multiple_get(row_number):
     """ 多条获取 hbase 记录 """
-    connection = happybase.Connection(HBASE_HOST)
+    # 设置 socket 超时时间为 10 分钟
+    connection = happybase.Connection(HBASE_HOST, timeout=600000)
     table = connection.table(HBASE_TABLE)
     row_keys = []
     for i in range(row_number):
