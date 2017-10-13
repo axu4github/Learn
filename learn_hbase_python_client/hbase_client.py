@@ -37,8 +37,8 @@ def single_get(row_number):
     """ 单条获取 hbase 记录 """
     connection = happybase.Connection(HBASE_HOST)
     table = connection.table(HBASE_TABLE)
-    for i in range(row_number):
-        table.row(DEFAULT_ROW_KEY)
+
+    return [table.row(DEFAULT_ROW_KEY) for i in range(row_number)]
 
 
 @time_analyze
@@ -47,11 +47,8 @@ def multiple_get(row_number):
     # 设置 socket 超时时间为 10 分钟
     connection = happybase.Connection(HBASE_HOST, timeout=600000)
     table = connection.table(HBASE_TABLE)
-    row_keys = []
-    for i in range(row_number):
-        row_keys.append(DEFAULT_ROW_KEY)
 
-    table.rows(row_keys)
+    return table.rows([DEFAULT_ROW_KEY for i in range(row_number)])
 
 
 @click.command()
@@ -60,8 +57,8 @@ def main(row_number):
     if row_number == 0:
         row_number = GET_ROW_NUMBER
 
-    single_get(row_number)
-    multiple_get(row_number)
+    print(len(single_get(row_number)))
+    print(len(multiple_get(row_number)))
 
 
 if __name__ == "__main__":
