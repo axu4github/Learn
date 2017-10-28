@@ -24,6 +24,14 @@ class RunTimeTest(unittest.TestCase):
         print((e - s) * 1000)
         pass
 
+    def test_prcess_total_run_time_by_time(self):
+        """ 使用 time() 方法，测试程序运行总时间 """
+        s = time.time()
+        time.sleep(5)
+        e = time.time()
+        print(e - s)
+        pass
+
 
 if __name__ == "__main__":
     unittest.main()
