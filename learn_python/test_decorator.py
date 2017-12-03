@@ -13,6 +13,8 @@ def foo():
 
 
 def class_deco(func):
+    print(func.__doc__)
+
     def wrapper(*args, **kwargs):
         print '123'
         func(*args, **kwargs)
@@ -25,6 +27,7 @@ class Class_Foo(object):
 
     @class_deco
     def class_bar(self, arg='arg', arg1='arg1', *args, **kwargs):
+        """ doc of class_bar function """
         print arg, arg1, args, kwargs
 
 
