@@ -16,6 +16,14 @@ def _reverse(pair):
 
 
 def main():
+    """
+    执行命令：
+
+    > cd /Users/axu/opt/apache-spark/latest
+    > bin/spark-submit --master spark://localhost:7077 \
+                       ~/code/axuProject/Learn/learn_spark_on_python/01.test_wordcount.py \
+                       ~/opt/apache-spark/latest/README.md
+    """
     file_path = sys.argv[1]
     spark = _init_spark_session()
     text_file = spark.read.text(file_path).rdd
