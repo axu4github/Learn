@@ -12,6 +12,22 @@ def foo():
     print 'bar'
 
 
+def a():
+    print("a")  # 1
+
+    def decorator(f):
+        print("decorator")  # 4
+        return f  # 5
+
+    print("finish decorator")  # 2
+    return decorator  # 3
+
+
+@a()  # 必须带括号
+def bar():
+    print("bar")
+
+
 def class_deco(func):
     print(func.__doc__)
 
@@ -35,3 +51,5 @@ if __name__ == '__main__':
     foo()
     print '---'
     Class_Foo().class_bar()
+    print("-" * 3)
+    bar()
