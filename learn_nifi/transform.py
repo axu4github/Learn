@@ -18,9 +18,6 @@ class PyStreamCallback(StreamCallback):
             if field in products and products[field] is not None:
                 products[field] = list(set(products[field].split(" && ")))
 
-        if "id" in products:
-            products["id"] = products["filename"]
-
     def process(self, inputStream, outputStream):
         content = IOUtils.toString(inputStream, StandardCharsets.UTF_8)
         if content == "{}":

@@ -28,6 +28,7 @@ class PyStreamCallback(StreamCallback):
             log.info("{0} => {1}".format(src_file_path, dest_file_path))
             f = open(dest_file_path, "wb").write
             self.ftp.retrbinary("RETR %s" % src_file_path, f)
+            file["download_path"] = dest_file_path
 
         return files
 

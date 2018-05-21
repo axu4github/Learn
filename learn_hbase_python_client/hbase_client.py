@@ -9,9 +9,9 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
-HBASE_HOST = "10.0.3.41"
+HBASE_HOST = "172.31.117.94"
 HBASE_TABLE = "smartv"
-DEFAULT_ROW_KEY = b"dy-gz-t54548716_20150201_8221862.mp3"
+DEFAULT_ROW_KEY = b"B2C-IM-20180411-Lancome-1002.wav"
 GET_ROW_NUMBER = 1000
 
 
@@ -59,6 +59,8 @@ def main(row_number):
 
     print(len(single_get(row_number)))
     print(len(multiple_get(row_number)))
+
+    print(single_get(row_number))
 
 
 if __name__ == "__main__":

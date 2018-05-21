@@ -1,6 +1,7 @@
 from org.apache.commons.io import IOUtils
 from java.nio.charset import StandardCharsets
 from org.apache.nifi.processor.io import StreamCallback
+import json
 
 
 class JsonEmptyError(RuntimeError):
@@ -14,11 +15,15 @@ class PyStreamCallback(StreamCallback):
     def __init__(self):
         pass
 
+    def transfer(self, recoed):
+        pass
+
     def process(self, inputStream, outputStream):
         content = IOUtils.toString(inputStream, StandardCharsets.UTF_8)
         if content == "{}":
             raise JsonEmptyError("CONTENT IS EMPTY.")
 
+            
         outputStream.write(content.encode("utf-8"))
 
 
